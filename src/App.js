@@ -1,25 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 
-function App() {
+const style = { margin: "1rem", padding: "0.5rem", border: "2px solid black" };
+function Home(props) {
+  return <h2 style={{ ...style, borderColor: "red" }}>The Home Screen</h2>;
+}
+function Cats(props) {
+  return <h2 style={{ ...style, borderColor: "blue" }}>The Cats Screen</h2>;
+}
+function About(props) {
+  return <h2 style={{ ...style, borderColor: "green" }}>The About Screen</h2>;
+}
+export default function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <h1>My App</h1>
+      <nav>
+        <Link to="/">Home Screen</Link>&nbsp; {/* &nbsp; creates whitespace */}
+        <Link to="cats">Cats Screen</Link>&nbsp;
+        <Link to="about">About Screen</Link>
+      </nav>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="cats" element={<Cats />} />
+        <Route path="about" element={<About />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
-
-export default App;
